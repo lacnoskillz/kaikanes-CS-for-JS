@@ -1,6 +1,6 @@
 const { connect, connection } = require('mongoose');
 
-connect('mongodb://localhost/developersApplications', {
+connect('mongodb://localhost/kaismod18challenge', {
   useNewUrlParser: true,
   useUnifiedTopology: true,
   family: 4,
