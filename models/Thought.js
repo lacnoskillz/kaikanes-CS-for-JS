@@ -1,4 +1,4 @@
-const { Schema, model } = require('mongoose');
+const { Schema, model, Types } = require('mongoose');
 
 const reaction = new Schema(
   {
@@ -14,11 +14,12 @@ const reaction = new Schema(
     },
     username: {
       type: String,
-      Required: true,
+      required: true,
     },
     createdAt: {
       type: Date,
       default: Date.now,
+      get: (date) => date.toLocaleDateString()
       //add getter method to format the timestamp on query
     },
   }
@@ -29,7 +30,7 @@ const thoughtSchema = new Schema(
   {
     thoughtText: {
       type: String,
-      Required: true,
+      required: true,
       minLength: 1,
       maxLength: 280,
 
@@ -38,10 +39,11 @@ const thoughtSchema = new Schema(
       type: Date,
       default: Date.now,
       //add getter method to format the timestamp on query
+      get: (date) => date.toLocaleDateString()
     },
     username: {
       type: String,
-      Required: true,
+      required: true,
       //ref user?
     },
     // reactions?
