@@ -46,7 +46,7 @@ const thoughtSchema = new Schema(
       required: true,
       //ref user?
     },
-    // reactions using the above reaction schema
+    // reactions array using the above reaction schema
     reactions: [reaction],
   },
     {
