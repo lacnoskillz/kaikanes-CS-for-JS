@@ -1,11 +1,14 @@
+// require models from models folder
 const { Thought, User } = require('../models');
-
+// route methods
+//function to get all thoughts using find() method and return reults as JSON. catch errors and send to 500 message if error
 module.exports = {
   getThoughts(req, res) {
     Thought.find()
       .then((thoughts) => res.json(thoughts))
       .catch((err) => res.status(500).json(err));
   },
+  //get a single thought using findOne() method
   getSingleThought(req, res) {
     Thought.findOne({ _id: req.params.thoughtId })
       .then((thought) =>
@@ -15,7 +18,10 @@ module.exports = {
       )
       .catch((err) => res.status(500).json(err));
   },
- 
+ // creata a Thought with create() method
+ // then finds user with id provided in body and attemps to find that user and add the thought to the users thoughts array in model
+ // if no user is found send error method
+ // send 'thought created!' if successfull
   createThought(req, res) {
     Thought.create(req.body)
       .then((thought) => {
@@ -28,16 +34,16 @@ module.exports = {
       .then((user) =>
         !user
           ? res.status(404).json({
-              message: 'thought created, but found no user with that ID',
+              message: 'Thought created, but found no user with that ID',
             })
-          : res.json('Created the thought 🎉')
+          : res.json('Thought created!')
       )
       .catch((err) => {
         console.log(err);
         res.status(500).json(err);
       });
   },
- 
+ //update a Thought using findOneAndUpdate method
   updateThought(req, res) {
     Thought.findOneAndUpdate(
       { _id: req.params.thoughtId },
@@ -75,8 +81,9 @@ module.exports = {
       )
       .catch((err) => res.status(500).json(err));
   },
-  
-  // adds a reaction
+  // searches for Though using thoughtId in params
+  // if found adds a reaction
+  // else sends error "no thought with this id!"
   addReaction(req, res) {
     Thought.findOneAndUpdate(
       { _id: req.params.thoughtId },
@@ -90,7 +97,10 @@ module.exports = {
       )
       .catch((err) => res.status(500).json(err));
   },
-  // removes a reaction
+  
+  // removes a reaction by searching for Though with findOneAndUpdate method
+  // if the thoughtId in param is found  removes the reaction with the reactionId provided in params
+  // sends error if no thought found
   removeReaction(req, res) {
     Thought.findOneAndUpdate(
       { _id: req.params.thoughtId },

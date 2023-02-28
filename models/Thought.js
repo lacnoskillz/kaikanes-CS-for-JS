@@ -1,5 +1,5 @@
 const { Schema, model, Types } = require('mongoose');
-
+// Schema to create reaction model that will be used to fill reactions in thought model/schema
 const reaction = new Schema(
   {
     reactionId: {
@@ -19,8 +19,8 @@ const reaction = new Schema(
     createdAt: {
       type: Date,
       default: Date.now,
+      //getter method to format the timestamp on query
       get: (date) => date.toLocaleDateString()
-      //add getter method to format the timestamp on query
     },
   }
 );
@@ -38,7 +38,7 @@ const thoughtSchema = new Schema(
     createdAt: {
       type: Date,
       default: Date.now,
-      //add getter method to format the timestamp on query
+      //getter method to format the timestamp on query
       get: (date) => date.toLocaleDateString()
     },
     username: {
@@ -46,7 +46,7 @@ const thoughtSchema = new Schema(
       required: true,
       //ref user?
     },
-    // reactions?
+    // reactions using the above reaction schema
     reactions: [reaction],
   },
     {

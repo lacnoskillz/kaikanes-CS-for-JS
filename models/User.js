@@ -7,6 +7,7 @@ const userSchema = new Schema(
     email: {type: String, 
       required: true, 
       unique: true, 
+      // regex that checks if the email entered matches the emailformat below 
       match: /^([a-z0-9_\.-]+)@([\da-z\.-]+)\.([a-z\.]{2,6})$/,
     },
     
@@ -32,7 +33,7 @@ const userSchema = new Schema(
   }
 );
 
-// Create a virtual property `friendCount` that gets the amount of friends a user has
+//  a virtual property `friendCount` that gets the amount of friends a user has
 userSchema.virtual('friendCount').get(function () {
   return this.friends.length;
 });

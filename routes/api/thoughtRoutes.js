@@ -1,4 +1,5 @@
 const router = require('express').Router();
+// bring in functions from thoughtControllers to be called here on certain routes
 const {
   getThoughts,
   getSingleThought,
@@ -9,20 +10,26 @@ const {
   removeReaction,
 } = require('../../controllers/thoughtController');
 
-// /api/applications
+// /api/thoughts
+// route that gets all thoughts
 router.route('/').get(getThoughts).post(createThought);
 
-// /api/applications/:applicationId
+// /api/thoughts/:thoughtId
+// route that gets single thought/ deletes and updates
+// uses the below methods
 router
   .route('/:thoughtId')
   .get(getSingleThought)
   .put(updateThought)
   .delete(deleteThought);
 
-// /api/applications/:applicationId/tags
+// /api/thoughts/:thoughtID/reactions
+// route that gets adds a reaction to the thought
 router.route('/:thoughtId/reactions').post(addReaction);
 
-// /api/applications/:applicationId/tags/:tagId
+
+// /api/thoughts/:thoughtId/reactions/:reactionId
+// route that deletes a reaction on a thought
 router.route('/:thoughtId/reactions/:reactionId').delete(removeReaction);
 
 module.exports = router;

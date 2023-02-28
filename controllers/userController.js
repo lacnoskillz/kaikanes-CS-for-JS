@@ -35,6 +35,7 @@ module.exports = {
       .then(() => res.json({ message: 'User and associated thoughts deleted!' }))
       .catch((err) => res.status(500).json(err));
   },
+  // updates user
   updateUser(req, res) {
     User.findOneAndUpdate(
       { _id: req.params.userId },
