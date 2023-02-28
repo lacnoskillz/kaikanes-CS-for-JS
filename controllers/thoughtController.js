@@ -76,7 +76,7 @@ module.exports = {
       .catch((err) => res.status(500).json(err));
   },
   
-  // 
+  // adds a reaction
   addReaction(req, res) {
     Thought.findOneAndUpdate(
       { _id: req.params.thoughtId },
@@ -90,7 +90,7 @@ module.exports = {
       )
       .catch((err) => res.status(500).json(err));
   },
-  // deketes a tag
+  // removes a reaction
   removeReaction(req, res) {
     Thought.findOneAndUpdate(
       { _id: req.params.thoughtId },
