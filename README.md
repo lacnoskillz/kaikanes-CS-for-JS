@@ -19,4 +19,4 @@ For social network that uses NoSQL database to handle large amounts of unstructu
 #### Link
 ***
 click for walkthrough video
-[click me]()
+[click me](https://drive.google.com/file/d/1tJTVqFQ2aWRarOnEGlPwyJjV06QrnfS1/view)
