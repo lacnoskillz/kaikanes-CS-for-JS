@@ -22,6 +22,13 @@ const reaction = new Schema(
       //getter method to format the timestamp on query
       get: (date) => date.toLocaleDateString()
     },
+  },
+  {
+    toJSON: {
+      
+      getters: true,
+    },
+    id: false,
   }
 );
 
@@ -39,7 +46,7 @@ const thoughtSchema = new Schema(
       type: Date,
       default: Date.now,
       //getter method to format the timestamp on query
-      get: (date) => date.toLocaleDateString()
+      get: (timestamp) => timestamp.toLocaleDateString()
     },
     username: {
       type: String,
@@ -52,6 +59,7 @@ const thoughtSchema = new Schema(
     {
     toJSON: {
       virtuals: true,
+      getters: true,
     },
     id: false,
   }
